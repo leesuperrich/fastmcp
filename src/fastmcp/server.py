@@ -4,6 +4,7 @@ import asyncio
 import functools
 import inspect
 import json
+import os
 import re
 from itertools import chain
 from typing import Any, Callable, Dict, Literal, Sequence, TypeVar, ParamSpec
@@ -75,8 +76,8 @@ class Settings(BaseSettings):
     port: int = 8000
 
     # HTTPS settings
-    ssl_keyfile = None
-    ssl_certfile = None
+    ssl_keyfile: str | os.PathLike[str] | None = None
+    ssl_certfile: str | os.PathLike[str] | None = None
 
     # resource settings
     warn_on_duplicate_resources: bool = True
