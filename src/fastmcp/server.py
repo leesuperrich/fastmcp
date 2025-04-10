@@ -74,6 +74,10 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
+    # HTTPS settings
+    ssl_keyfile = None
+    ssl_certfile = None
+
     # resource settings
     warn_on_duplicate_resources: bool = True
 
@@ -454,6 +458,8 @@ class FastMCP:
             starlette_app,
             host=self.settings.host,
             port=self.settings.port,
+            ssl_keyfile=self.settings.ssl_keyfile,
+            ssl_certfile=self.settings.ssl_certfile,
             log_level=self.settings.log_level.lower(),
         )
         server = uvicorn.Server(config)
